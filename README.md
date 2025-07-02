@@ -27,7 +27,7 @@ implementation 'com.royrodriguez:transitionbutton:0.2.0'
 
 Add the TransitonButton to your layout:
 ```
-<com.royrodriguez.transitionbutton.TransitionButton
+<com.example.rav_transitionbuttonlib.RavTransitionButton
 android:id="@+id/transition_button"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
@@ -45,18 +45,22 @@ Setup your code:
 ```
 public class MainActivity extends AppCompatActivity {
 
-    private TransitionButton transitionButton;
+    RavTransitionButton transitionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-	
+
+        WindowUtils.makeStatusbarTransparent(this);
+        getSupportActionBar().hide();
+
         transitionButton = findViewById(R.id.transition_button);
+
         transitionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the loading animation when the user tap the button
+                // Then start the loading animation when the user tap the button
                 transitionButton.startAnimation();
 
                 // Do your networking task or background work here.
@@ -64,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        boolean isSuccessful = true;
-                        
-			// Choose a stop animation if your call was succesful or not
+                        boolean isSuccessful = false;
+
                         if (isSuccessful) {
-                            transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
+                            transitionButton.stopAnimation(RavTransitionButton.StopAnimationStyle.EXPAND,
+                                    new RavTransitionButton.OnAnimationStopEndListener() {
                                 @Override
                                 public void onAnimationStopEnd() {
                                     Intent intent = new Intent(getBaseContext(), NewActivity.class);
@@ -77,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null);
+                            transitionButton.stopAnimation(RavTransitionButton.StopAnimationStyle.SHAKE,
+                                    null);
                         }
                     }
                 }, 2000);
