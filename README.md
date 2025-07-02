@@ -8,7 +8,7 @@
 
 <img src="rav_transitionbuttonlib/expand.gif" width="300" />
 
-### ⚡Shake Animation
+### ⚡ Shake Animation
 
 <img src="rav_transitionbuttonlib/shake.gif" width="300" />
 
@@ -24,6 +24,7 @@ implementation 'com.royrodriguez:transitionbutton:0.2.0'
 
 ### ⚡ How to use
 **Step 1**
+
 Add the TransitonButton to your layout:
 ```
 <com.royrodriguez.transitionbutton.TransitionButton
@@ -38,6 +39,7 @@ android:textColor="@android:color/white" />
 ```
 
 **Step 2**
+
 Setup your code:
 
 ```
